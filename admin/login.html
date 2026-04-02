@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Login</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <main class="main">
+        <section class="registration section">
+            <div class="container">
+                <div class="registration__card registration__card--form">
+                    <div class="topbar topbar--public">
+                        <a href="/" class="button topbar__link">Student Form</a>
+                    </div>
+                    <h1 class="section__title-1">
+                        <span>Admin Login</span>
+                    </h1>
+
+                    <p class="registration__subtitle">
+                        Only authorised users can access the dashboard.
+                    </p>
+
+                    <form id="adminLoginForm" class="registration__form">
+                        <div class="registration__group">
+                            <label for="username" class="registration__label">Username:</label>
+                            <input
+                                type="text"
+                                id="username"
+                                name="username"
+                                class="registration__input"
+                                placeholder="Enter username"
+                                required
+                            />
+                        </div>
+
+                        <div class="registration__group">
+                            <label for="password" class="registration__label">Password:</label>
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                class="registration__input"
+                                placeholder="Enter password"
+                                required
+                            />
+                        </div>
+
+                        <button type="submit" class="button registration__button">
+                            Login
+                        </button>
+
+                        <p id="loginMessage" class="registration__message"></p>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+  <script>
+    const adminLoginForm = document.getElementById("adminLoginForm");
+    const loginMessage = document.getElementById("loginMessage");
+
+    adminLoginForm.addEventListener("submit", async function (e) {
+      e.preventDefault();
+
+      const username = document.getElementById("username").value.trim();
+      const password = document.getElementById("password").value.trim();
+
+      try {
+        const response = await fetch("/admin/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ username, password })
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+          window.location.href = "/admin/dashboard";
+        } else {
+          loginMessage.textContent = data.message;
+          loginMessage.className = "registration__message error";
+        }
+      } catch (error) {
+        console.error("Login error:", error);
+        loginMessage.textContent = "Something went wrong. Please try again.";
+        loginMessage.className = "registration__message error";
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Registration</title>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- <header class="nav-header" id="nav-header">
+  <nav class="nav container">
+    <div class="container nav-container">
+      <a href="#" class="nav__logo">
+        <span class="nav__logo-circle">SR</span>
+        <span class="nav__logo-name">Student Registration</span>
+      </a>
+    </div>
+  </nav>
+</header> ==-->
+
+  <main class="main">
+  <section class="registration section">
+    <div class="container">
+        <div class="registration__card registration__card--form">
+          <div class="topbar topbar--public">
+            <a href="/admin/login" class="button topbar__link">Admin Login</a>
+          </div>
+
+          <h1 class="section__title-1">
+            <span>Student Registration</span>
+          </h1>
+
+          <p class="registration__subtitle">
+            Fill in your details below.
+          </p>
+
+          <form id="studentForm" class="registration__form">
+            <div class="registration__group">
+              <label for="fullName" class="registration__label">Full Name:</label>
+              <input
+                type="text"
+                id="fullName"
+                name="fullName"
+                class="registration__input"
+                placeholder="Enter your full name"
+                required
+              />
+            </div>
+
+            <div class="registration__group">
+              <label for="studentNumber" class="registration__label">Student Number:</label>
+              <input
+                type="text"
+                id="studentNumber"
+                name="studentNumber"
+                class="registration__input"
+                placeholder="Enter your student number"
+                required
+              />
+            </div>
+
+            <div class="registration__group">
+              <label for="email" class="registration__label">Email:</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                class="registration__input"
+                placeholder="Enter your email address"
+                required
+              />
+            </div>
+
+            <div class="registration__group">
+              <label for="phoneNumber" class="registration__label">Phone Number:</label>
+              <input
+                type="text"
+                id="phoneNumber"
+                name="phoneNumber"
+                class="registration__input"
+                placeholder="Enter your phone number"
+                required
+              />
+            </div>
+
+            <div class="registration__group">
+              <label for="residenceChoice" class="registration__label">Residence Placed to:</label>
+              <select
+                id="residenceChoice"
+                name="residenceChoice"
+                class="registration__input"
+                required
+              >
+                <option value="">Select a residence</option>
+                <option value="Botlogile 36">Botlogile 36</option>
+                <option value="M Village">M Village</option>
+                <option value="Botlogile 2">Botlogile 2</option>
+                <option value="Res Roma">Res Roma</option>
+                <option value="Phuleng">Phuleng</option>
+                <option value="Phokeng">Phokeng</option>
+              </select>
+            </div>
+
+            <button type="submit" class="button registration__button">
+              Submit Application
+            </button>
+
+            <p id="message" class="registration__message"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>View Students</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="main">
+    <section class="registration section">
+      <div class="container">
+        <div class="registration__card">
+          <div class="topbar">
+            <a href="index.html" class="button topbar__link">Add Student</a>
+            <a href="students.html" class="button topbar__link">View Students</a>
+          </div>
+
+          <h1 class="section__title-1">
+            <span>Student Records</span>
+          </h1>
+
+          <p class="registration__subtitle">
+            Below is the list of students already saved in the system.
+          </p>
+
+          <div class="table-wrapper">
+            <table class="students-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Full Name</th>
+                  <th>Student Number</th>
+                  <th>Email</th>
+                  <th>Phone Number</th>
+                  <th>Residence</th>
+                </tr>
+              </thead>
+              <tbody id="studentsTableBody">
+                <tr>
+                  <td colspan="6">Loading students...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p id="tableMessage" class="registration__message"></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="students.js"></script>
+</body>
+</html>

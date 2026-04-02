@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <main class="main">
+    <section class="section">
+      <div class="container">
+        <div class="registration__card registration__card--dashboard">
+          <div class="dashboard-header">
+            <div>
+              <h2 class="dashboard-heading">Admin Dashboard</h2>
+              <p class="dashboard-subtext">Manage student records from here.</p>
+            </div>
+
+            <div class="topbar-actions">
+              <button id="exportBtn" class="button topbar__link" type="button">Export CSV</button>
+              <button id="logoutBtn" class="button topbar__link" type="button">Logout</button>
+            </div>
+          </div>
+
+          <div class="dashboard-title-block">
+            <h1 class="dashboard-title">Student Records</h1>
+            <p class="dashboard-subtitle">
+              Only the admin can view this dashboard.
+            </p>
+          </div>
+
+          <div class="stats-grid">
+            <div class="stat-card">
+              <h3>Total Students</h3>
+              <p id="totalStudents">0</p>
+            </div>
+
+            <div class="stat-card">
+              <h3>Total Residences</h3>
+              <p id="totalResidences">0</p>
+            </div>
+
+            <div class="stat-card">
+              <h3>Latest Student</h3>
+              <p id="latestStudent">None</p>
+            </div>
+          </div>
+
+          <div class="filters-bar">
+            <input
+              type="text"
+              id="studentNumberSearch"
+              class="registration__input filter-input"
+              placeholder="Search by student number"
+            />
+
+            <select id="residenceFilter" class="registration__input filter-select">
+              <option value="">All Residences</option>
+            </select>
+          </div>
+
+          <div class="table-wrapper">
+            <table class="students-table">
+              <thead>
+                <tr>
+                  <th>No.</th>
+                  <th>Full Name</th>
+                  <th>Student Number</th>
+                  <th>Email</th>
+                  <th>Phone Number</th>
+                  <th>Residence</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="studentsTableBody">
+                <tr>
+                  <td colspan="7">Loading students...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p id="tableMessage" class="registration__message"></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Edit Modal -->
+  <div id="editModal" class="modal hidden">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Edit Student</h2>
+        <button id="closeModalBtn" class="button delete-btn" type="button">Close</button>
+      </div>
+
+      <form id="editStudentForm" class="registration__form">
+        <input type="hidden" id="editStudentId" />
+
+        <div class="registration__group">
+          <label for="editFullName" class="registration__label">Full Name</label>
+          <input type="text" id="editFullName" class="registration__input" required />
+        </div>
+
+        <div class="registration__group">
+          <label for="editStudentNumber" class="registration__label">Student Number</label>
+          <input type="text" id="editStudentNumber" class="registration__input" required />
+        </div>
+
+        <div class="registration__group">
+          <label for="editEmail" class="registration__label">Email</label>
+          <input type="email" id="editEmail" class="registration__input" required />
+        </div>
+
+        <div class="registration__group">
+          <label for="editPhoneNumber" class="registration__label">Phone Number</label>
+          <input type="text" id="editPhoneNumber" class="registration__input" required />
+        </div>
+
+        <div class="registration__group">
+          <label for="editResidenceChoice" class="registration__label">Residence Choice</label>
+          <select id="editResidenceChoice" class="registration__input" required>
+            <option value="">Select residence</option>
+            <option value="Botlogile 36">Botlogile 36</option>
+            <option value="Bokamoso">Bokamoso</option>
+            <option value="Legae">Legae</option>
+            <option value="Molelwane">Molelwane</option>
+          </select>
+        </div>
+
+        <button type="submit" class="button registration__button">Save Changes</button>
+        <p id="editMessage" class="registration__message"></p>
+      </form>
+    </div>
+  </div>
+
+  <script src="/dashboard.js"></script>
+</body>
+</html>
