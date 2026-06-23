@@ -96,6 +96,35 @@ app.post("/register", (req, res) => {
   });
 });
 
+// Protected route to delete a student
+app.delete("/admin/students/:id", isAdminLoggedIn, (req, res) => {
+  const studentId = req.params.id;
+
+  const sql = `DELETE FROM students WHERE id = ?`;
+
+  db.query(sql, [studentId], (err, result) => {
+    if (err) {
+      console.error("Error deleting student:", err.message);
+      return res.status(500).json({
+        success: false,
+        message: "Database error while deleting student."
+      });
+    }
+
+    if (result.affectedRows === 0) {
+      return res.status(404).json({
+        success: false,
+        message: "Student not found."
+      });
+    }
+
+    return res.json({
+      success: true,
+      message: "Student deleted successfully."
+    });
+  });
+});
+
 // ---------------- ADMIN ROUTES ----------------
 
 // Show admin login page
@@ -159,8 +188,9 @@ app.get("/admin/export", isAdminLoggedIn, (req, res) => {
     let csv =
       "ID,Full Name,Student Number,Email,Phone Number,Residence Choice,Created At\n";
 
-    results.forEach((student) => {
-      csv += `${student.id},"${student.full_name}","${student.student_number}","${student.email}","${student.phone_number}","${student.residence_choice}","${student.created_at}"\n`;
+    results.forEach((student, index) => {
+      const rowNumber = index + 1;
+      csv += `${rowNumber},"${student.full_name}","${student.student_number}","${student.email}","${student.phone_number}","${student.residence_choice}","${student.created_at}"\n`;
     });
 
     res.header("Content-Type", "text/csv");
@@ -169,8 +199,6 @@ app.get("/admin/export", isAdminLoggedIn, (req, res) => {
   });
 });
 
-// Protected route to delete a student
-// Protected route to update a student
 app.put("/admin/students/:id", isAdminLoggedIn, (req, res) => {
   const studentId = req.params.id;
   const { fullName, studentNumber, email, phoneNumber, residenceChoice } = req.body;
